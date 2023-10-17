@@ -1,9 +1,6 @@
-const game_Board = document.querySelector("game-Board");
-const contx = game_Board.getContext("2d");
-
-//canvas or game-board dimesions
-let GB_Width = game_Board.Width;
-let GB_Height = game_Board.Height;
+// //Game-Board Properties
+// let GB_Width = 800;
+// let GB_Height = 1000;
 
 
 //Ball properties
@@ -14,11 +11,25 @@ let ball_Y = GB_Height - 30;
 let x_vel = 2;
 let y_vel = 2;
 
-function draw_Ball(){
-    contx.beginPath();
-    contx.arc(ball_X , ball_Y ,ball_radius , Math.PI * 2);
-    contx.fillStyle = "black";
-    contx.fill();
-    contx.closePath();
+window.onload =function(){
+   
+    const game_Board = document.getElementById("game-Board");
+    
+    //canvas or game-board dimesions
+    let GB_Width = game_Board.clientWidth;
+    let GB_Height = game_Board.clientHeight;
+    // game_Board.clientWidth = GB_Width;
+    // game_Board.clientHeight = GB_Height;
+    
+    const contx = game_Board.getContext("2d");
+    
+    // function draw_Ball(){
+    //     contx.beginPath();
+    //     contx.arc(ball_X , ball_Y ,ball_radius , Math.PI * 2);
+    //     contx.fillStyle = "black";
+    //     contx.fill();
+    //     contx.closePath();
+    // }
+
 }
 
