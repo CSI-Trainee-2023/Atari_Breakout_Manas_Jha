@@ -6,19 +6,18 @@
 html body{
     height:100%;
     width:100%;
+    text-align: center;
 }
 
-.game-container{
+/* .game-container{
     height:100%;
     width:100%;
     text-align: center;
     background-color: aqua;
-}
+} */
 
 #game-Board{
     
-    height:800px;
-    width:800px;
     border: 2px solid;
     background-color: rgb(134, 17, 237);
 }
