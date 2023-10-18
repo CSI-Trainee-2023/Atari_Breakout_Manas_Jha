@@ -35,34 +35,54 @@ window.onload =function(){
     Game_Board.width = GB_Width;
     Game_Board.height = GB_Height;
     
-    const contx = Game_Board.getContext("2d");
+    contx = Game_Board.getContext("2d");
+
+
+    contx.fillStyle = "black";
+    contx.fillRect(floater.x , floater.y , floater.width , floater.height);
+
     
-
-    function draw_Floater(){
-        contx.fillStyle = "black";
-        contx.fillRect(floater.x , floater.y , floater.width , floater.height);
-    }
-    // draw_Floater();
-
-    function draw_Ball(){
-        contx.beginPath();
-        contx.arc(ball_X , ball_Y ,ball_radius , Math.PI * 2);
-        contx.fillStyle = "white";
-        contx.fill();
-        contx.closePath();
-    }
-    // draw_Ball();
-
+    requestAnimationFrame(Draw);
     document.addEventListener("keydown" , move_floater);
 
 }
 
+function Draw(){
+
+    requestAnimationFrame(Draw);
+
+    contx.clearRect(0 , 0 , GB_Width ,GB_Height);
+    // contx.fillStyle = "black";
+    // contx.fillRect(floater.x , floater.y , floater.width , floater.height);
+    draw_Floater();
+}
+
+
+function draw_Floater(){
+    contx.fillStyle = "black";
+    contx.fillRect(floater.x , floater.y , floater.width , floater.height);
+}
+
+function draw_Ball(){
+    contx.beginPath();
+    contx.arc(ball_X , ball_Y ,ball_radius , Math.PI * 2);
+    contx.fillStyle = "white";
+    contx.fill();
+    contx.closePath();
+}
+
+
+
+
 function move_floater(event){
-    if (event.code == "ArrowLeft"){
+    if (event.code == "ArrowLeft" && floater.x > 0){
         floater.x -= floater.vel_X; 
+        console.log("1");
     }
 
-    else if(event.code == "ArrowRight"){
+    else if(event.code == "ArrowRight" && (floater.x+floater.width) < GB_Width){
         floater.x += floater.vel_X;
+        console.log("2");
     }
-}
+}    
+
