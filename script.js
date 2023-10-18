@@ -23,8 +23,8 @@ let floater = {
 let ball_radius = 10;
 let ball_X = GB_Width / 2 ;
 let ball_Y = GB_Height /2;
-let ball_x_vel = 2;
-let ball_y_vel = -2;
+let ball_x_vel = 5;
+let ball_y_vel = -3;
 
 let ball = {
     x :ball_X,
@@ -67,8 +67,19 @@ function Draw(){
     draw_Floater(); 
     draw_Ball(); 
     ball_movement();
+
+
+    if (ball.y <= 0){ //if ball touches the uper boundary
+        ball_y_vel *= -1;
+    }
+    if (ball.x <= 0){ // if ball touches the left boundary
+        ball_x_vel *= -1;
+    }
+    if (ball.x >= GB_Width){ // if ball touches the right boundary
+        ball_x_vel *= -1;
+    }
     
-    requestAnimationFrame(Draw);
+    requestAnimationFrame(Draw); // to recal the function Draw in 60 fps for smooth animation 
 }
 
 
