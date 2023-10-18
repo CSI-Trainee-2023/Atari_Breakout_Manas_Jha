@@ -20,11 +20,11 @@ let floater = {
 }
 
 //Ball properties
-let ball_radius = 10;
+let ball_radius = 12;
 let ball_X = GB_Width / 2 ;
 let ball_Y = GB_Height /2;
 let ball_x_vel = 5;
-let ball_y_vel = -3;
+let ball_y_vel = -5;
 
 let ball = {
     x :ball_X,
@@ -40,13 +40,10 @@ window.onload =function(){
     //canvas or game-board dimesions
     Game_Board.width = GB_Width;
     Game_Board.height = GB_Height;
-    
     contx = Game_Board.getContext("2d");
 
+    Draw()    
 
-  
-    Draw()
-    
     document.addEventListener("keydown" , move_floater);
 
 
@@ -78,7 +75,17 @@ function Draw(){
     if (ball.x >= GB_Width){ // if ball touches the right boundary
         ball_x_vel *= -1;
     }
+    // if (ball.x == floater.x && ball.x < floater.x + floater.width){
+    //     ball_y_vel *= -1;
+    // }
     
+    // if(top_collision(ball , floater) || bottom_collision(ball , floater)){
+    //     ball_y_vel *= -1;
+    // }
+    // else if(left_collision(ball , floater) || right_collision(ball , floater)){
+    //     ball_x_vel *= -1; 
+    // }
+
     requestAnimationFrame(Draw); // to recal the function Draw in 60 fps for smooth animation 
 }
 
@@ -104,7 +111,29 @@ function ball_movement(){
     ball.y += ball_y_vel;
 }
 
+// function collision_detection(a,b){
+//     return (a.x < b.x + b.width) &&
+//             (a.x + a.radius > b.width) &&
+//             (a.y < b.y + b.height) &&
+//             (a.y + a.radius > b.y);
 
+// }
+
+// function top_collision(ball , block){
+//     return collision_detection(ball ,block) && (ball.y + ball.radius) >=  block.y;
+// }
+
+// function bottom_collision(ball , block){
+//     return collision_detection(ball , block) && (block.y + block.height) >= ball.y;
+// }
+
+// function left_collision(ball , block){
+//     return collision_detection(ball , block) && (ball.x + ball.radius) >= block.x;
+// }
+
+// function right_collision(ball , block){
+//     return collision_detection(ball , block) && (block.x + block.width) >= ball.x;
+// }
 
 
 function move_floater(event){
