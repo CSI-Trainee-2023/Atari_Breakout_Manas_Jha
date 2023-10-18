@@ -20,11 +20,17 @@ let floater = {
 }
 
 //Ball properties
-let ball_radius = 50;
+let ball_radius = 10;
 let ball_X = GB_Width / 2 ;
-let ball_Y = f_height -10;
+let ball_Y = GB_Height /2;
 let x_vel = 2;
 let y_vel = 2;
+
+let ball = {
+    x :ball_X,
+    y :ball_Y,
+    radius : ball_radius
+}
 
 
 window.onload =function(){
@@ -37,9 +43,8 @@ window.onload =function(){
     
     contx = Game_Board.getContext("2d");
 
-
-    contx.fillStyle = "black";
-    contx.fillRect(floater.x , floater.y , floater.width , floater.height);
+    draw_Floater();
+    draw_Ball();
 
     
     requestAnimationFrame(Draw);
@@ -54,7 +59,9 @@ function Draw(){
     contx.clearRect(0 , 0 , GB_Width ,GB_Height);
     // contx.fillStyle = "black";
     // contx.fillRect(floater.x , floater.y , floater.width , floater.height);
-    draw_Floater();
+    draw_Floater(); 
+
+    draw_Ball(); 
 }
 
 
@@ -64,11 +71,12 @@ function draw_Floater(){
 }
 
 function draw_Ball(){
-    contx.beginPath();
-    contx.arc(ball_X , ball_Y ,ball_radius , Math.PI * 2);
-    contx.fillStyle = "white";
+    // contx.beginPath();
+    // console.log("hello");
+    contx.fillStyle = "black";
+    contx.arc(ball_X , ball_Y ,ball_radius , 0 , Math.PI * 2);
     contx.fill();
-    contx.closePath();
+    // contx.closePath();
 }
 
 
