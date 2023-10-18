@@ -75,6 +75,8 @@ function Draw(){
 
     // drawing objects on the canvas
     draw_Floater(); 
+
+    ballFloaterCollision();
     draw_Ball(); 
     ball_movement();
 
@@ -87,6 +89,13 @@ function Draw(){
     }
     if (ball.x >= GB_Width){ // if ball touches the right boundary
         ball_x_vel *= -1;
+    }
+    if (ball.y + ball_y_vel > GB_Height - ball.radius) {
+        // Ball hit the paddle
+        if (ball.y + ball_radius >= floater.y && ball.x < floater.x + f_width) {
+        //   dy = -dy;
+        ball_y_vel *= -1;
+        }
     }
     // if (ball.x == floater.x && ball.x < floater.x + floater.width){
     //     ball_y_vel *= -1;
@@ -171,6 +180,18 @@ function create_Blocks(){
         }
     }
     block_count = block_list.length;
+}
+
+function ballFloaterCollision() {
+  // Check for collision between the ball and the floater
+  if (
+    ball.x + ball.radius > floater.x &&
+    ball.x - ball.radius < floater.x + floater.width &&
+    ball.y + ball.radius > floater.y
+  ) {
+    // Reverse the vertical direction of the ball
+    ball_y_vel = -ball_y_vel;
+  }
 }
 
 function move_floater(event){
