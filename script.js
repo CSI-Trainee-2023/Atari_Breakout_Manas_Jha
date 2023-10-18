@@ -33,6 +33,18 @@ let ball = {
 }
 
 
+//black properties
+let block_list = [];
+let block_width = 70;
+let block_height = 20 ;
+let block_Columns = 9;
+let block_Rows = 3;
+let block_Max_rows = 6
+let block_count = 0;
+
+let block_X = 45;
+let block_Y = 45;
+
 window.onload =function(){
    
     Game_Board = document.getElementById("game-Board");
@@ -45,6 +57,7 @@ window.onload =function(){
     Draw()    
 
     document.addEventListener("keydown" , move_floater);
+    create_Blocks();
 
 
 
@@ -82,10 +95,18 @@ function Draw(){
     // if(top_collision(ball , floater) || bottom_collision(ball , floater)){
     //     ball_y_vel *= -1;
     // }
-    // else if(left_collision(ball , floater) || right_collision(ball , floater)){
-    //     ball_x_vel *= -1; 
+    // if (ball.x == floater.x && ball.x < floater.x + floater.width){
+    //     ball_y_vel *= -1;
+    // }    //     ball_x_vel *= -1; 
     // }
 
+    contx.fillStyle = "Blue";
+    for(let i = 0 ;  i <  block_list.length ; i++){
+        let block_var = block_list[i]; 
+        if(!block_var.break){
+            contx.fillRect(block_var.x , block_var.y ,block_var.width , block_var.height);
+        }
+    }
     requestAnimationFrame(Draw); // to recal the function Draw in 60 fps for smooth animation 
 }
 
@@ -135,6 +156,22 @@ function ball_movement(){
 //     return collision_detection(ball , block) && (block.x + block.width) >= ball.x;
 // }
 
+function create_Blocks(){
+    block_list = [];
+    for(let c = 0 ; c < block_Columns ; c++){
+        for(let r = 0 ; r < block_Rows ; r++){
+            let block = {
+                x : block_X + c*block_width + c*10,
+                y : block_Y + r*block_height + r*10,
+                width:block_width,
+                height:block_height,
+                break : false
+            }
+            block_list.push(block)
+        }
+    }
+    block_count = block_list.length;
+}
 
 function move_floater(event){
     if (event.code == "ArrowLeft" && floater.x > 0){
